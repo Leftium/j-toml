@@ -282,7 +282,7 @@ export default () :Table => {
 				const { leadingKeys, finalKey, asArrayItem, tag, lineRest } = regexps.TABLE_DEFINITION_exec_groups(line, parseKeys);
 				const table :Table = prepareTable(rootTable, leadingKeys);
 				if ( lineRest ) {
-					lineRest[0]==='#' || iterator.throws(SyntaxError(`Unexpect charachtor after table header` + iterator.where(' at ')));
+					lineRest[0]==='#' || iterator.throws(SyntaxError(`Unexpected character after table header` + iterator.where(' at ')));
 				}
 				lastSectionTable = appendTable(table, finalKey, asArrayItem, tag);
 				options.preserveComment && lineRest && ( lastSectionTable[commentForThis] = asArrayItem ? lineRest.slice(1) : table[commentFor(finalKey)] = lineRest.slice(1) );
@@ -295,7 +295,7 @@ export default () :Table => {
 				let rest :string | S = assign(forComment);
 				typeof rest==='string' || ( rest = x<string>(rest) );
 				if ( rest ) {
-					rest[0]==='#' || iterator.throws(SyntaxError(`Unexpect charachtor after key/value pair` + iterator.where(' at ')));
+					rest[0]==='#' || iterator.throws(SyntaxError(`Unexpected character after key/value pair` + iterator.where(' at ')));
 					if ( options.preserveComment ) { forComment.table[commentFor(forComment.finalKey)] = rest.slice(1); }
 				}
 			}
